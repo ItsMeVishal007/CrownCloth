@@ -50,6 +50,9 @@
       opacity: 0.8;
       position: absolute;
   
+      &:hover{
+        opacity: 1;
+      }
       .title {
         font-weight: bold;
         margin-bottom: 6px;
