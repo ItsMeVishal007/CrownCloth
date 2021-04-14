@@ -1,5 +1,5 @@
 import React from 'react';
-import collectionItem from '../../collection-item/collection-item.component'
+// import collectionItem from '../../collection-item/collection-item.component'
 
 const CollectionPreview = ({ title, items }) => {
 	return (
