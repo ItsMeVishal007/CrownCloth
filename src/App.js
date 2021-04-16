@@ -6,7 +6,7 @@ import Header from './components/Header/Header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-out/sign-in-sign-out.component';
 import {auth} from './firebase/firebase.utils'
 
-class App extends React.component{
+class App extends React.Component{
   constructor(){
     super();
 
@@ -15,8 +15,10 @@ class App extends React.component{
     };
   }
 
+  unSubscribedFromAuth = null;
+
   componentDidMount(){
-    auth.onAuthStateChanged(user=>{
+    this.unSubscribedFromAuth = auth.onAuthStateChanged(user=>{
       this.setState({
         currentUser : user
       })
@@ -24,10 +26,14 @@ class App extends React.component{
     })
   }
 
+  componentWillUnmount(){
+    this.unSubscribedFromAuth();
+  }
+
   render(){
     return (
       <div className="App">
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Route exact path='/' component={HomePage} />
         <Route exact path='/shop' component={ShopComponent} />
         <Route exact path='/signin' component={SignInAndSignUpPage} />

@@ -7,11 +7,14 @@
 
   .logo-container {
     height: 100%;
-    width: 70px;
+    width: 100px;
     padding: 25px;
     display: flex;
   }
-
+  .logo{
+    height: 50px;
+    width: 500px;
+  }
   .options {
     width: 50%;
     height: 100%;
