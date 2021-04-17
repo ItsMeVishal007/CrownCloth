@@ -4,34 +4,34 @@ import { Route } from 'react-router-dom';
 import ShopComponent from './pages/shop/Shop.component';
 import Header from './components/Header/Header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-out/sign-in-sign-out.component';
-import {auth , createUserProfileDocument} from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
-class App extends React.Component{
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super();
 
     this.state = {
-      currentUser:null
+      currentUser: null
     };
   }
 
-  unSubscribedFromAuth = null; 
+  unSubscribedFromAuth = null;
 
-  componentDidMount(){
-    this.unSubscribedFromAuth = auth.onAuthStateChanged(async user =>{
-      // this.setState({
-      //   currentUser : user
-      // })
-      createUserProfileDocument(user);
+  componentDidMount() {
+    this.unSubscribedFromAuth = auth.onAuthStateChanged(async user => {
+      this.setState({
+        currentUser: user
+      })
+      // createUserProfileDocument(user);
       // console.log(user)
     })
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unSubscribedFromAuth();
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
         <Header currentUser={this.state.currentUser} />
