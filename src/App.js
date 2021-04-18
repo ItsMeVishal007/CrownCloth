@@ -1,10 +1,13 @@
 import React from 'react'
 import HomePage from './pages/homepage/HomePage.component';
 import { Route } from 'react-router-dom';
+import {connect} from 'react-redux';
 import ShopComponent from './pages/shop/Shop.component';
 import Header from './components/Header/Header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-out/sign-in-sign-out.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import {SetCurrentUser} from './redux/user/user.action';
+
 
 class App extends React.Component {
   constructor() {
@@ -34,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header currentUser={this.state.currentUser} />
+        <Header/>
         <Route exact path='/' component={HomePage} />
         <Route exact path='/shop' component={ShopComponent} />
         <Route exact path='/signin' component={SignInAndSignUpPage} />
@@ -44,4 +47,8 @@ class App extends React.Component {
 
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  SetCurrentUser : user => dispatch(SetCurrentUser(user))
+})
+
+export default connect(null , mapDispatchToProps)(App);
